@@ -10,9 +10,10 @@ python = ">=3.8.1,<4.0"
 mk-network = {git = "https://github.com/matejker/network", branch = "master"}
 notebook = "^6.1.5"
 networkx = "^2.4"
-osmnx = "^0.15.1"
+osmnx = "^1.0.0"
 matplotlib = "^3.2.1"
 numpy = "^1.22.0"
+geopy = "^2.3.0"
 
 [tool.poetry.dev-dependencies]
 

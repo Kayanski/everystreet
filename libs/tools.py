@@ -4,6 +4,13 @@ from itertools import combinations
 from network import Network
 from heapq import heappop, heapify
 
+def show_progress(it, milestones=10000):
+    for i, x in enumerate(it):
+        yield x
+        processed = i + 1
+        if processed % milestones == 0:
+            print('Processed %s elements' % processed)
+
 
 def get_odd_degree_nodes(graph):
     """ Finds all odd degree nodes.
@@ -112,7 +119,30 @@ def get_shortest_distance_for_odd_degrees(graph, odd_degree_nodes):
 
     pairs = combinations(odd_degree_nodes, 2)
 
-    return {(v, u): nx.dijkstra_path_length(graph, v, u, weight="length") for v, u in pairs}
+    pairs = list(pairs)
+
+    print("start shortest distance : ", len(pairs))
+
+    return {(v, u): nx.dijkstra_path_length(graph, v, u, weight="length") for v, u in show_progress(pairs, 10000)}
+
+def get_shortest_distance_for_all(graph, nodes):
+    """ Finds shortest distance for all odd degree nodes combinations
+
+    Args:
+        - graph (networkx.Graph): undirected graph
+        - odd_degree_nodes (list): list of odd degree nodes
+
+    Returns:
+        - (dict): a dict with shortest distances for each combination of nodes
+    """
+
+    pairs = combinations(nodes, 2)
+
+    pairs = list(pairs)
+
+    print("start shortest distance : ", len(pairs))
+
+    return {(v, u): nx.dijkstra_path_length(graph, v, u, weight="length") for v, u in show_progress(pairs, 10000)}
 
 
 def get_shortest_paths(graph, nodes):
