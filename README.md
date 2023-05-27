@@ -166,6 +166,13 @@ Feel more that free to use, modify and copy the code, just follow the [licence](
 }
 ```
 
+## Adaptation
+
+In order to enable using the algorithm in real world applications (Paris in my case), I modified the algorithm a bit to account for one-way streets.
+In the previous version, the path it was drawing did not work when street were one way. It would go through the street in the wrong direction, creating impossible patterns.
+
+I also added a tracking system to decide which distance I wanted to walk at once to be able to simply plan them. 
+
 ## Related readings
 
 -  Brooks Andrew, (2018), _Graph optimization solvers for the Postman Problems_, 
